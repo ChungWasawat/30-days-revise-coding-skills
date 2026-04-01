@@ -1,0 +1,51 @@
+employee_id,name,department,salary,hire_date,age,city,performance_score,is_active
+1,Alice Johnson,Engineering,95000,2020-03-15,32,New York,4.5,True
+2,Bob Smith,Marketing,72000,2019-07-22,45,Los Angeles,3.8,True
+3,Carol White,Engineering,105000,2018-01-10,38,San Francisco,4.9,True
+4,David Brown,HR,58000,2021-11-05,29,Chicago,3.5,True
+5,Emma Davis,Finance,88000,2017-06-30,41,New York,4.2,True
+6,Frank Miller,Engineering,98000,2020-09-12,35,Seattle,4.7,True
+7,Grace Wilson,Marketing,65000,2022-02-18,27,Austin,3.9,True
+8,Henry Moore,Sales,74000,2019-04-25,48,New York,3.6,False
+9,Isabella Taylor,Finance,92000,2016-08-14,44,Chicago,4.4,True
+10,James Anderson,Engineering,112000,2015-12-01,50,San Francisco,4.8,True
+11,Karen Thomas,HR,55000,2023-01-09,25,Austin,3.2,True
+12,Liam Jackson,Sales,68000,2021-05-20,33,Los Angeles,3.7,True
+13,Mia Harris,Marketing,71000,2020-10-08,30,Chicago,4.1,True
+14,Noah Martin,Engineering,99000,2019-03-27,37,Seattle,4.6,True
+15,Olivia Garcia,Finance,86000,2018-07-16,42,New York,4.3,True
+16,Peter Martinez,Sales,62000,2022-08-11,28,Austin,3.4,False
+17,Quinn Robinson,Engineering,108000,2017-02-03,46,San Francisco,4.7,True
+18,Rachel Clark,HR,57000,2021-09-30,31,Chicago,3.6,True
+19,Samuel Rodriguez,Marketing,69000,2020-04-14,36,New York,3.9,True
+20,Tina Lewis,Finance,93000,2016-11-22,43,Los Angeles,4.5,True
+21,Umar Lee,Engineering,101000,2019-06-07,34,Seattle,4.4,True
+22,Victoria Walker,Sales,66000,2022-03-25,26,Austin,3.5,True
+23,William Hall,Marketing,73000,2018-09-18,40,Chicago,4.0,True
+24,Xena Allen,Finance,89000,2017-05-11,44,New York,4.2,False
+25,Yusuf Young,Engineering,115000,2015-08-29,52,San Francisco,5.0,True
+26,Zoe Hernandez,HR,59000,2023-04-06,24,Los Angeles,3.3,True
+27,Aaron King,Sales,70000,2020-12-13,39,Seattle,3.8,True
+28,Bella Wright,Engineering,97000,2019-10-01,33,New York,4.5,True
+29,Carlos Lopez,Marketing,67000,2021-07-19,28,Austin,3.7,True
+30,Diana Hill,Finance,84000,2018-03-08,41,Chicago,4.1,True
+31,Ethan Scott,Engineering,103000,2017-11-26,47,San Francisco,4.6,True
+32,Fiona Green,HR,56000,2022-06-04,30,New York,3.4,True
+33,George Adams,Sales,63000,2021-02-17,35,Los Angeles,3.6,True
+34,Hannah Baker,Marketing,75000,2019-08-30,38,Seattle,4.2,True
+35,Ian Carter,Finance,91000,2016-05-23,45,Austin,4.4,True
+36,Julia Mitchell,Engineering,110000,2015-10-15,51,Chicago,4.9,True
+37,Kevin Perez,Sales,71000,2020-07-02,32,New York,3.9,False
+38,Laura Roberts,HR,60000,2023-02-28,27,San Francisco,3.5,True
+39,Michael Turner,Marketing,68000,2021-04-09,36,Los Angeles,3.8,True
+40,Nancy Phillips,Finance,87000,2017-09-21,43,Seattle,4.3,True
+41,Oscar Campbell,Engineering,100000,2019-01-14,38,Austin,4.5,True
+42,Patricia Evans,Sales,64000,2022-05-07,29,Chicago,3.6,True
+43,Quentin Edwards,Marketing,72000,2018-11-20,41,New York,4.0,True
+44,Rita Collins,Finance,95000,2016-02-08,46,Los Angeles,4.6,True
+45,Steven Stewart,Engineering,106000,2017-07-31,48,San Francisco,4.7,True
+46,Teresa Sanchez,HR,58000,2023-03-16,26,Seattle,3.3,True
+47,Ursula Morris,Sales,69000,2020-11-23,34,Austin,3.7,True
+48,Victor Rogers,Marketing,70000,2021-06-10,37,Chicago,4.1,True
+49,Wendy Reed,Finance,90000,2018-04-27,42,New York,4.2,True
+50,Xavier Cox,Engineering,114000,2015-09-05,53,Los Angeles,4.8,True
