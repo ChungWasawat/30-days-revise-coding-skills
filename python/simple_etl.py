@@ -16,6 +16,7 @@ with open(INPUT, "r", encoding="utf-8") as f:
             salary = int(row["salary"])
         except (ValueError, TypeError):
             continue                        # drop bad rows
+            #salary = 0                     # replace with other values if want to use something like average, should have another for to do that
 
         # 2. cast types
         cleaned.append({
