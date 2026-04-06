@@ -1,3 +1,4 @@
 pyarrow
 requests
 python-json-logger
+pandas
