@@ -1,0 +1,40 @@
+{
+  "order_id": "ORD-99281",
+  "status": "shipped",
+  "timestamp": "2026-04-06T14:30:00Z",
+  "customer": {
+    "id": 502,
+    "name": "Jane Doe",
+    "email": "jane.doe@example.com",
+    "is_premium": true
+  },
+  "shipping_address": {
+    "street": "123 Python Lane",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94105",
+    "coordinates": {
+      "lat": 37.7749,
+      "lng": -122.4194
+    }
+  },
+  "items": [
+    {
+      "product_id": "PROD-001",
+      "name": "Wireless Mouse",
+      "quantity": 1,
+      "price": 25.99
+    },
+    {
+      "product_id": "PROD-042",
+      "name": "Mechanical Keyboard",
+      "quantity": 1,
+      "price": 89.00
+    }
+  ],
+  "totals": {
+    "subtotal": 114.99,
+    "tax": 9.20,
+    "grand_total": 124.19
+  }
+}
