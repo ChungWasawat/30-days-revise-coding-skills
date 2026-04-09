@@ -66,3 +66,6 @@ CREATE TABLE monthly_sales_2024_q2
 -- sale id is shared between child partitioned table
 INSERT INTO monthly_sales_partition (employee_id, sale_month, amount)
 VALUES (12, '2024-02-15', 10000);   -- goes to Q1
+
+EXPLAIN SELECT * FROM monthly_sales_partition
+WHERE sale_month BETWEEN '2024-01-01' AND '2024-03-31';
