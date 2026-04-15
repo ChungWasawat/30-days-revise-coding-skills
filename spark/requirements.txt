@@ -4,3 +4,4 @@ pandas==3.0.2
 pyarrow==23.0.1
 setuptools==75.2.0
 numpy==2.4.4
+delta-spark==3.2.0

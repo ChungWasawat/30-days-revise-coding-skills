@@ -36,6 +36,15 @@ docker build -t spark-in-local:latest \
     --build-arg hive_version=2.3.9 \
     .
 ```
+- build the dockerfor delta-lake 
+```
+docker build -t spark-in-local:latest \
+  --build-arg spark_version=3.5.3 \
+  --build-arg hadoop_version=3.3.6 \
+  --build-arg hive_version=2.3.9 \
+  --build-arg JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 \
+  .
+```
 - start the components
 ```
 docker compose up -d
