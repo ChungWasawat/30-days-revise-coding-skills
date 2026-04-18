@@ -1,3 +1,4 @@
+# example, shouldn't be shared if this is real project
 apiVersion: v1
 kind: ConfigMap
 metadata:
