@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: etl-pipeline-job
+  labels:
+    app: telco-churn
+spec:
+  ttlSecondsAfterFinished: 300      # ① auto-delete pod 5 min after completion
+  template:
+    spec:
+      restartPolicy: OnFailure      # ② retry on crash, but not on success. For "Never"- restart, use to inspect pod
+      containers:
+        - name: pipeline
+          image: meowppp/my-pipeline:v1
+          imagePullPolicy: IfNotPresent  # ③ use local image if exists, pull if not. "Never"- pull=> fail, "Always"- pull from registry
+          envFrom:
+            - configMapRef:
+                name: pipeline-config
+            - secretRef:
+                name: db-credentials
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
