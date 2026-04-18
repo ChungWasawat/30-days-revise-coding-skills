@@ -1,0 +1,19 @@
+apiVersion: v1          # Which K8s API handles this resource type
+kind: Pod               # What kind of resource
+metadata:               # Name, labels, namespace
+  name: hello-pod
+  labels:
+    app: hello          # Labels are how K8s objects refer to each other
+spec:                   # Desired state — what you want K8s to create
+  containers:
+    - name: hello
+      image: python:3.11-slim
+      imagePullPolicy: IfNotPresent
+      command: ["python", "-u", "-c", "print('Hello from Kubernetes!'); import time; time.sleep(3600)"]
+      resources:
+        requests:         # Minimum guaranteed resources
+          memory: "64Mi"
+          cpu: "100m"     # 100m = 0.1 CPU core (m = millicores)
+        limits:           # Hard ceiling — container killed if exceeded
+          memory: "128Mi"
+          cpu: "200m"
