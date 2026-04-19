@@ -11,7 +11,7 @@ spec:
       restartPolicy: OnFailure      # ② retry on crash, but not on success. For "Never"- restart, use to inspect pod
       containers:
         - name: pipeline
-          image: meowppp/my-pipeline:v1
+          image: meowppp/my-pipeline:v5
           imagePullPolicy: IfNotPresent  # ③ use local image if exists, pull if not. "Never"- pull=> fail, "Always"- pull from registry
           envFrom:
             - configMapRef:

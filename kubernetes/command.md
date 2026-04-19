@@ -52,3 +52,6 @@ To create secrets
         DB_PASSWORD: c3VwZXJzZWNyZXQ=
 ```
 * `kubectl get secret db-credentials -o yaml`       # Verify (values will show as base64)   
+
+# ── PORT-FORWARD
+`kubectl port-forward service/postgres-service 5432:5432` to connect localhost:5432 to cluster port 5432

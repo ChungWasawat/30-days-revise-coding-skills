@@ -15,3 +15,10 @@ Pods get a random internal IP address that changes every time the pod is recreat
 - Q: What's the difference between resource requests and limits?
 
 requests is the minimum guaranteed allocation — K8s uses this to schedule pods onto nodes that have enough capacity. limits is the hard ceiling — if a container exceeds its memory limit, it gets OOMKilled (Out Of Memory). Always set both so pipelines don't starve or crash each other.
+
+
+## notes
+- configmap and secret have similar purpose but secret is more confidential 
+- pod: working service, deployment: larger scale management for pod like network; replica, job: one-time execution job, cronjob: scheduling job
+- service and pod connect via service-spec.selector, deployment-spec.template.metadata.labels
+- port-forward to connect local device with kube cluster

@@ -7,4 +7,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY src/ ./src/
 
-CMD ["python", "src/simulate_etl.py"]
+CMD ["python", "src/write_db.py"]

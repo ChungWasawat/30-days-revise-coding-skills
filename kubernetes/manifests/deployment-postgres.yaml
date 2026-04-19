@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres                  # name of pod 
+  labels:
+    app: postgres
+    tier: database
+spec:
+  replicas: 1                        # ① number of pod copies
+  selector:
+    matchLabels:
+      app: postgres                  # ② MUST match template.metadata.labels (deployment uses this to find pod)
+  template:                          # ③ pod spec template
+    metadata:
+      labels:
+        app: postgres               # ← matched by selector above
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15
+          envFrom:
+            - secretRef:
+                name: postgres-credentials
+          ports:
+            - containerPort: 5432
+              name: postgres
+          readinessProbe:            # ④ K8s won't route traffic to this pod until this passes
+            exec:
+              command: ["pg_isready", "-U", "pgsadmin", "-d", "week3"]
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 3
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+
