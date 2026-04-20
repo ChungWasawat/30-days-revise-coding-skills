@@ -55,3 +55,24 @@ To create secrets
 
 # ── PORT-FORWARD
 `kubectl port-forward service/postgres-service 5432:5432` to connect localhost:5432 to cluster port 5432
+
+# ── CRONJOBS
+`kubectl patch cronjob daily-etl-pipeline -p '{"spec":{"suspend":true}}'` suspend:true=pause, suspend:false=resume
+`kubectl edit cronjob daily-etl-pipeline` can fix in the file if the above issue doesn't work
+
+# ── ROLLOUT
+`kubectl set image deployment/postgres postgres=postgres:16` change something via command
+`kubectl rollout status deployment/postgres` watch status of new pod-start, old pod-delete
+`kubectl rollout history deployment/postgres` see what happened 
+`kubectl rollout undo deployment/postgres` roll back pod to previous latest version
+`kubectl rollout undo deployment/postgres --to-revision=1` roll back to specific version
+
+# ── STORAGECLASS 
+`kubectl get storageclass/ sc` to check available explicit storage 
+
+# ── PERSISTENTVOLUMECLAIM
+to bind PVC (storage request) to pod
+
+# ── STATEFULSET -HEADLESS
+to not use Kube's load balancer. each pod has its resources
+

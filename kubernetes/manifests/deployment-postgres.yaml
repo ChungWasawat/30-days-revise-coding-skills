@@ -1,19 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres                  # name of pod 
+  name: postgres              # name of pod 
   labels:
     app: postgres
     tier: database
-spec:
-  replicas: 1                        # ① number of pod copies
+spec: 
+  replicas: 1                   # ① number of pod copies
+  strategy:
+    type: Recreate             # ① (PVC added) critical for databases to match ReadWriteOnce(only one to read write) from pvc: shutdown old pod> start new pod. default is RollindUpdate: start new pod>wait for ready>shutdown old pod, old pod will not unlock the volume
   selector:
     matchLabels:
-      app: postgres                  # ② MUST match template.metadata.labels (deployment uses this to find pod)
-  template:                          # ③ pod spec template
+      app: postgres             # ② MUST match template.metadata.labels (deployment uses this to find pod)
+  template:                     # ③ pod spec template
     metadata:
       labels:
-        app: postgres               # ← matched by selector above
+        app: postgres           # ← matched by selector above
     spec:
       containers:
         - name: postgres
@@ -21,20 +23,22 @@ spec:
           envFrom:
             - secretRef:
                 name: postgres-credentials
-          ports:
+          ports: # (PVC removed name of port)
             - containerPort: 5432
-              name: postgres
-          readinessProbe:            # ④ K8s won't route traffic to this pod until this passes
+          volumeMounts:         # ② (PVC added) container-level mount
+            - name: postgres-storage
+              mountPath: /var/lib/postgresql/data   # (PVC added) path in container
+              subPath: pgdata   # ③ (PVC added) create this dir to help postgres image initialize without any problem
+          readinessProbe:
             exec:
               command: ["pg_isready", "-U", "pgsadmin", "-d", "week3"]
-            initialDelaySeconds: 10
+            initialDelaySeconds: 15
             periodSeconds: 5
             failureThreshold: 3
           resources:
-            requests:
-              memory: "256Mi"
-              cpu: "250m"
-            limits:
-              memory: "512Mi"
-              cpu: "500m"
-
+            requests: { memory: "256Mi", cpu: "250m" }
+            limits:   { memory: "512Mi", cpu: "500m" }
+      volumes:                  # ④ (PVC added) pod-level volume declaration 
+        - name: postgres-storage
+          persistentVolumeClaim:
+            claimName: postgres-pvc

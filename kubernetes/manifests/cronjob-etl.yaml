@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: daily-etl-pipeline
+spec:
+  schedule: "*/5 * * * *"                # every 5 minutes (for testing)
+  concurrencyPolicy: Forbid              # ① don't start new run if previous is running. Allow-start new run even old one still run as it's independent, Forbid-skip new run, Replace-kill old run and start new run
+  startingDeadlineSeconds: 60            # ② skip run if it can't start within 60s
+  successfulJobsHistoryLimit: 3          # ③ keep last 3 successful job pods for logs
+  failedJobsHistoryLimit: 3              # keep last 3 failed for debugging
+  jobTemplate:
+    spec:
+      ttlSecondsAfterFinished: 300
+      backoffLimit: 2                    # ④ retry failed pod up to 2 times
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+            - name: pipeline
+              image: meowppp/my-pipeline:v5
+              imagePullPolicy: Always
+              envFrom:
+                - configMapRef:
+                    name: pipeline-config
+                - secretRef:
+                    name: db-credentials
+              resources:
+                requests: { memory: "256Mi", cpu: "250m" }
+                limits:   { memory: "512Mi", cpu: "500m" }
