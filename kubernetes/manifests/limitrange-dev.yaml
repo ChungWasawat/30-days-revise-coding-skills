@@ -1,0 +1,21 @@
+# to limit container/pod-level
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: dev-limits
+  namespace: dev
+spec:
+  limits:
+    - type: Container
+      default:               # applied if container omits limits
+        memory: "256Mi"
+        cpu: "200m"
+      defaultRequest:        # applied if container omits requests
+        memory: "128Mi"
+        cpu: "100m"
+      max:                   # hard ceiling per container
+        memory: "1Gi"
+        cpu: "1"
+      min:                   # floor — prevents requesting 1Mi (wastes scheduler time)
+        memory: "64Mi"
+        cpu: "50m"

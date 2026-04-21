@@ -43,3 +43,47 @@ The StatefulSet is deleted, pods are terminated, but PVCs from volumeClaimTempla
 - service and pod connect via service-spec.selector, deployment-spec.template.metadata.labels
 - port-forward to connect local device with kube cluster
 - use cronjob to extract data from database volume to another data storage (like pg_dump)
+- "persistentVolumeReclaimPolicy":"Delete"-default= deleting PVC will delete underlying disk too, "persistentVolumeReclaimPolicy":"Retain"-keeps PV and data after PVC is deleted
+- ResourceQuota is for all resources but LimitRange is for each pod/container
+```
+# Limit
+CPU exceeds limit    → throttled (slowed down, NOT killed)
+Memory exceeds limit → OOMKilled (pod terminated immediately, then restarted)
+```
+- Liveness and Readiness probes
+```
+Readiness Probe                    Liveness Probe
+───────────────                    ──────────────
+"Is it ready for traffic?"         "Is it still alive?"
+ 
+Fails → pod removed from           Fails → pod RESTARTED
+         Service endpoints                  (container killed and recreated)
+ 
+Use for: slow startup,             Use for: deadlocks, memory leaks,
+         warming up caches,                 frozen processes that won't
+         waiting for dependencies           crash on their own
+```
+```
+#exec to run command inside container (exit code 0 = healthy)
+readinessProbe:
+  exec:
+    command: ["pg_isready", "-U", "admin", "-d", "warehouse"]
+
+#httpGet to set http request to container (http 2xx, 3xx = healthy)
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 8080
+
+#tcpSocket to check if port opens
+readinessProbe:
+  tcpSocket:
+    port: 5432
+
+#timing parameters
+initialDelaySeconds: 15   # wait before FIRST probe (give app time (avg time to start)) -too short: unnecessary restart, -too long: traffic routed to broken pod for a while
+periodSeconds: 5          # how often to probe
+timeoutSeconds: 3         # how long to wait for response before counting as failure
+failureThreshold: 3       # consecutive failures before action taken (restart)
+successThreshold: 1       # consecutive successes to recover (readiness only)
+```

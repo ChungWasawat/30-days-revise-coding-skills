@@ -1,0 +1,16 @@
+# to limit total budget for each resource
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: dev-quota
+  namespace: dev                # choose namespace to apply this 
+spec:
+  hard:
+    requests.cpu: "2"           # total CPU requests across all pods in dev
+    requests.memory: "2Gi"      # total memory requests
+    limits.cpu: "4"             # total CPU limits
+    limits.memory: "4Gi"        # total memory limits
+    count/pods: "15"            # max pods
+    count/jobs.batch: "10"      # max jobs
+    count/cronjobs.batch: "5"   # max cronjobs
+    requests.storage: "10Gi"    # total PVC storage
